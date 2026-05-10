@@ -59,8 +59,11 @@ tasks.named('test', Test) {
 }
 
 tasks.named('run', JavaExec) {
-    systemProperty 'runMode',    project.findProperty('runMode')    ?: 'local'
-    systemProperty 'pauseForUi', project.findProperty('pauseForUi') ?: 'false'
+    systemProperty 'runMode',           project.findProperty('runMode')           ?: 'local'
+    systemProperty 'pauseForUi',        project.findProperty('pauseForUi')        ?: 'false'
+    systemProperty 'scenarioIntervalMs',project.findProperty('scenarioIntervalMs')?: '200'
+    systemProperty 'partialProgress',   project.findProperty('partialProgress')   ?: 'false'
+    systemProperty 'maxCommits',        project.findProperty('maxCommits')        ?: '5'
     jvmArgs '-Xmx1g', '-XX:+UseG1GC'
     systemProperty 'log4j.configurationFile', 'log4j2.xml'
 }

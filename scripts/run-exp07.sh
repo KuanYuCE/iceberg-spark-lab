@@ -41,7 +41,7 @@ echo "Scenario $SCENARIO: intervalMs=$INTERVAL partialProgress=$PARTIAL maxCommi
 ./gradlew run \
   -PmainClass=experiments.Exp07a_IngestionWorker \
   -PrunMode=$MODE \
-  -DscenarioIntervalMs=$INTERVAL \
+  -PscenarioIntervalMs=$INTERVAL \
   > results/exp07-ingestion.log 2>&1 &
 INGESTION_PID=$!
 echo "IngestionWorker PID=$INGESTION_PID"
@@ -65,8 +65,8 @@ echo "IngestionWorker ready. Launching CompactionWorker."
 ./gradlew run \
   -PmainClass=experiments.Exp07b_CompactionWorker \
   -PrunMode=$MODE \
-  -DpartialProgress=$PARTIAL \
-  -DmaxCommits=$MAX_COMMITS \
+  -PpartialProgress=$PARTIAL \
+  -PmaxCommits=$MAX_COMMITS \
   > results/exp07-compaction.log 2>&1
 
 echo "CompactionWorker done. Writing stop flag."
